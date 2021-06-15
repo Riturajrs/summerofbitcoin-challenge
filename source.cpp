@@ -26,12 +26,6 @@ ll stringTointeger(string str)
     }
     return temp;
 }
-bool compareThem(const coins &a,const coins &b){
-    if( (a.total_fee)*(b.total_weight) >= (b.total_fee)*(a.total_weight) )
-    return true;
-    else 
-    return false;
-}
 void solve(coins a ){
     weight += a.weight;
     if(a.ptxid.empty() || weight > 4000000 )
@@ -102,6 +96,7 @@ int main(){
         v.clear();
         id.push_back(temp1);
     }
+
     int f;
     // Calculating total fees for every transaction using breadth first search
     for( i = 0 ; i < id.size() ; i++ ){
@@ -130,8 +125,19 @@ int main(){
             q.pop();
         }
     }
+    ll mind= 0 ;
     //Sorting transaction using Greedy algortihim
-    // sort(txid.begin(),txid.end(),compareThem);
+    for (i = 0; i < id.size()-1; i++)
+    {
+        mind = i;
+        for (j = i+1; j < id.size(); j++){
+        if ( id[j].total_fee*id[mind].total_weight < id[mind].total_fee*id[j].total_weight )
+            mind = j;
+        }
+        temp1 = id[i];
+        id[i] = id[mind];
+        id[mind] = temp1;
+    }
     //Storing the transaction ids
     for( auto it : id ){
         if( weight + it.weight > 4000000 ){
