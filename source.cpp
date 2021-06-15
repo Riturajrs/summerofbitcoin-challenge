@@ -21,7 +21,7 @@ ll weight = 0;
 ll stringTointeger(string str)
 {
     ll temp = 0;
-    for (ll i = 0; i < str.length(); i++) {
+    for (ll i = 0; i < str.size(); i++) {
         temp = temp * 10 + (str[i] - '0');
     }
     return temp;
@@ -78,7 +78,6 @@ int main(){
                     i = s1.size();
                 }
                 s1 = "";
-                i++;
                 c++;
             }
             else{
@@ -96,7 +95,6 @@ int main(){
         v.clear();
         id.push_back(temp1);
     }
-
     int f;
     // Calculating total fees for every transaction using breadth first search
     for( i = 0 ; i < id.size() ; i++ ){
@@ -131,7 +129,7 @@ int main(){
     {
         mind = i;
         for (j = i+1; j < id.size(); j++){
-        if ( id[j].total_fee*id[mind].total_weight < id[mind].total_fee*id[j].total_weight )
+        if ( id[j].total_fee*id[mind].total_weight > id[mind].total_fee*id[j].total_weight )
             mind = j;
         }
         temp1 = id[i];
@@ -150,6 +148,7 @@ int main(){
     }
     // Creating block.txt file
     ofstream file;
+    int c1 = 0;
     file.open("block.txt");
     // Writing in block.txt file
     for( i = 0 ; i < sol.size() ; i++ ){
@@ -161,6 +160,7 @@ int main(){
             }
         }
         if( f == 0 ){
+            c1++;
             file << sol[i] << nl;
         }
     }

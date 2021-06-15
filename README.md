@@ -6,6 +6,6 @@ I have maximised the ratio of total fees from each transaction by total weight o
 Worst case time complexity is O( N<sup>2</sup> )
 A better approach would be applying dynamic programming to solve it.<br>
 <br>
-Total transactions : 5214<br>
-Total weight : 1769100<br>
-Total profit : 1078091 
+Total transactions : 3217<br>
+Total weight : 3999784<br>
+Total profit : 5817973 
